@@ -145,6 +145,14 @@ namespace NPK
 						out = dta;
 						break;
 					}
+					case 0://RC4
+					{
+						out = dta;
+						RC4 arc4(RC4key, sizeof(RC4key) - 1);//no nulltrm
+						arc4.process(out.data(), out.size());
+
+						break;
+					}
 
 					default:
 						std::cout << "[ERR] Unsupported CT " << std::to_string(COMP_TYP) << " !, aborted." << std::endl;
