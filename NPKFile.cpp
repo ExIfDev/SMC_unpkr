@@ -145,12 +145,50 @@ namespace NPK
 						out = dta;
 						break;
 					}
-					case 0://RC4
+					case 0:
 					{
 						out = dta;
-						RC4 arc4(RC4key, sizeof(RC4key) - 1);//no nulltrm
-						arc4.process(out.data(), out.size());
-
+		
+						
+						{
+							RC4 npkRc4(RC4key, sizeof(RC4key) - 1);
+							npkRc4.process(out.data(), out.size());
+						}
+		
+						BinaryReader nxr(out);
+		
+						if (nxr.ReadFixedString(4) != "NXS\x03")
+						{
+							std::cout << "[ERR] Not NXS  " << i << std::endl;
+							std::exit(7);
+						}
+		
+						
+						nxr.Seek(8);
+		
+						uint32_t nxsDecompSize = nxr.Read<uint32_t>();
+		
+						std::vector<uint8_t> nxsdata = nxr.ReadBytes(out.size() - 12);
+		
+						{
+							RC4 nxsRc4(RC4key, sizeof(RC4key) - 1);
+							nxsRc4.process(nxsdata.data(), nxsdata.size());
+						}
+		
+						std::vector<uint8_t> pycdata;
+						pycdata.resize(nxsDecompSize);
+		
+						int decomp = LZ4_decompress_safe(
+							reinterpret_cast<const char*>(nxsdata.data()),
+							reinterpret_cast<char*>(pycdata.data()),
+							static_cast<int>(nxsdata.size()),
+							static_cast<int>(nxsDecompSize)
+						);
+		
+						pycdata.resize(decomp);
+		
+						out = std::move(pycdata);
+		
 						break;
 					}
 
