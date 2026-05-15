@@ -4,15 +4,11 @@
 
 
 
-uint32_t npk_Hash(const std::string& input)
+uint32_t npk_Hash(const std::string& str)
 {
     uint32_t hash = 0xF4FA8928u;
     uint32_t state = 0x37A8470E;
     uint32_t tweak = 0x7758B42B;
-
-  
-    std::string str = input;
-
     size_t byteLen = str.size();
     size_t wordCount = (byteLen + 3) / 4 + 2; 
 
@@ -71,8 +67,6 @@ uint32_t npk_Hash(const std::string& input)
 
 uint32_t NHashV1(const std::string& path) {
 
-    std::string normalized = path;
-    std::transform(normalized.begin(), normalized.end(), normalized.begin(), ::tolower);
-    return npk_Hash(normalized); 
+    return npk_Hash(path); 
 }
 

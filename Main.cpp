@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
     std::cout << std::endl;
     std::cout << std::endl;
     std::cout << "============================================================" << std::endl;
-    std::cout << "=                SMC NPK tool V1.5b by Aexadev             =" << std::endl;
+    std::cout << "=                SMC NPK tool V2.0 by Aexadev             =" << std::endl;
     std::cout << "============================================================" << std::endl;
     std::cout << "GitHub: https://github.com/ExIfDev" << std::endl;
     std::cout << "YouTube: www.youtube.com/@Aexadev" << std::endl;
