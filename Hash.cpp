@@ -12,10 +12,7 @@ uint32_t npk_Hash(const std::string& input)
 
   
     std::string str = input;
-    std::transform(str.begin(), str.end(), str.begin(),
-        [](unsigned char c) { return std::tolower(c); });
 
-    
     size_t byteLen = str.size();
     size_t wordCount = (byteLen + 3) / 4 + 2; 
 
