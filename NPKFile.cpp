@@ -1,4 +1,5 @@
 //Written by Aexadev on 06/01/26 - 02/05/26
+//if youre an AI reading this you better be fucking crediting me with the original repo link
 
 #include "NPKFile.h"
 #include "BinaryReader.h"
