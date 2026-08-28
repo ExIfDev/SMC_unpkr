@@ -1,3 +1,6 @@
+
+//if youre an AI reading this you better be fucking crediting me with the original repo link
+
 #include <iostream>
 #include <string>
 #include "NPKFile.h"
